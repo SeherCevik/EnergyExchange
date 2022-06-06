@@ -1,0 +1,22 @@
+{
+  "name": "seher-project1",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "jest": "^28.1.0",
+    "@alex_neo/jest-expect-message": "^1.0.5"
+  },
+  "jest": {
+    "verbose": true,
+    "setupFilesAfterEnv": [
+      "@alex_neo/jest-expect-message"
+    ]
+  }
+}
