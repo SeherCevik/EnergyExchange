@@ -12,7 +12,6 @@ MongoClient.connect(URL, (err, client) => {
     db.collection('EnergyOffers').find(sorgu).toArray((err, result) => {
         if (err) throw err;
         // console.log(JSON.stringify(result, null, ' '));
-        
 
         console.log (findBlocks(result));
 
