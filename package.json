@@ -10,13 +10,16 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "jest": "^28.1.0",
-    "@alex_neo/jest-expect-message": "^1.0.5"
+    "@alex_neo/jest-expect-message": "^1.0.5",
+    "jest": "^28.1.0"
   },
   "jest": {
     "verbose": true,
     "setupFilesAfterEnv": [
       "@alex_neo/jest-expect-message"
     ]
+  },
+  "dependencies": {
+    "mongodb": "^4.6.0"
   }
 }
