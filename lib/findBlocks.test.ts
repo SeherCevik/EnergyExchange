@@ -1,8 +1,9 @@
 // noinspection JSCheckFunctionSignatures
 
-const findBlocks = require("./findBlocks");
+import {IDepthHistory} from "./IDepthHistory";
+import {BlockFinder} from "./blockFinder";
 
-const contractDepthHistory = [
+const contractDepthHistory: IDepthHistory[] = [
     {
         contract: 'PH220604-05',
         deliveryStart: '2022-06-04 05:00',
@@ -64,12 +65,12 @@ it('should parse sample blocks', function () {
         {
             contract: 'PH220604-05',
             dateTime: '2022-06-03 19:02',
-            remainingMinutes: 477,
-            buy250: [
+            remainingMinutes: 478,
+            buyBlocks: [
                 1000.00,
                 1000.00
             ],
-            sell250: [
+            sellBlocks: [
                 4476.00,
                 4674.64,
                 4858.00,
@@ -78,27 +79,27 @@ it('should parse sample blocks', function () {
         }
     ];
 
-    const calculatedResult1 = findBlocks(contractDepthHistory[0]);
+    const calculatedResult = BlockFinder.findBlocks(contractDepthHistory[0]);
 
-    expect(calculatedResult1, "Result is null").not.toBeNull();
-    expect(Array.isArray(calculatedResult1), "Result is not an array").toBe(true);
-    expect(calculatedResult1.length, "Expected one row").toBe(1);
+    expect(calculatedResult).not.toBeNull();
+    //expect(Array.isArray(calculatedResult)).toBe(true);
+    //expect(calculatedResult.length).toBe(1);
 
-    expect(calculatedResult1[0].contract).toBe(expectedResult1[0].contract);
-    expect(calculatedResult1[0].dateTime).toBe(expectedResult1[0].dateTime);
-    expect(calculatedResult1[0].remainingMinutes).toBe(expectedResult1[0].remainingMinutes);
+    expect(calculatedResult.contract).toBe(expectedResult1[0].contract);
+    expect(calculatedResult.dateTime).toBe(expectedResult1[0].dateTime);
+    expect(calculatedResult.remainingMinutes).toBe(expectedResult1[0].remainingMinutes);
 
-    expect(Array.isArray(calculatedResult1[0].buy250)).toBe(true);
-    expect(calculatedResult1[0].buy250.length).toBe(expectedResult1[0].buy250.length);
+    expect(Array.isArray(calculatedResult.buyBlocks)).toBe(true);
+    expect(calculatedResult.buyBlocks.length).toBe(expectedResult1[0].buyBlocks.length);
 
-    calculatedResult1[0].buy250.forEach((_, index) => {
-        expect(calculatedResult1[0].buy250[index], "buy250[" + index + "] does not match").toBe(expectedResult1[0].buy250[index]);
+    calculatedResult.buyBlocks.forEach((_, index) => {
+        expect(calculatedResult.buyBlocks[index]).toBe(expectedResult1[0].buyBlocks[index]);
     });
 
-    expect(calculatedResult1[0].sell250).toBe(true);
-    expect(calculatedResult1[0].sell250.length).toBe(expectedResult1[0].sell250.length);
+    expect(Array.isArray(calculatedResult.sellBlocks)).toBe(true);
+    expect(calculatedResult.sellBlocks.length).toBe(expectedResult1[0].sellBlocks.length);
 
-    calculatedResult1[0].sell250.forEach((_, index) => {
-        expect(calculatedResult1[0].sell250[index], "sell250[" + index + "] does not match").toBe(expectedResult1[0].sell250[index]);
+    calculatedResult.sellBlocks.forEach((_, index) => {
+        expect(calculatedResult.sellBlocks[index]).toBe(expectedResult1[0].sellBlocks[index]);
     });
 });

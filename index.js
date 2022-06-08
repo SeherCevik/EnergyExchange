@@ -1,3 +1,3 @@
-import {findBlocks} from "./lib/findBlocks";
+import {findBlocks} from "./lib/blockFinder";
 
 export default findBlocks;
